@@ -29,5 +29,4 @@ Hakuna matata
    
 > ua ale jazda poniżej są diagramy xd
 
-
-![P diagram](/diagrams/P_diagram.png)
+<img src="/diagrams/P_diagram.png">
