@@ -6,4 +6,7 @@
 #ifndef NETSIM_TYPES_HPP
 #define NETSIM_TYPES_HPP
 
+using ElementID = int;
+using size_type = int;
+
 #endif //NETSIM_TYPES_HPP

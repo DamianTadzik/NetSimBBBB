@@ -1,0 +1,2 @@
+Klasy IPackageStorepile, IPackageQueue, PackageQueueType powinny byc dobrze ogarniete, choc moga sie pojawic drobne niedociagniecia
+Klasa Package wymaga kilku poprawek, nie wiem czy to ona powinna przydzielac id czy jak to ma tam do konca dzialac.
