@@ -6,13 +6,15 @@
 #ifndef NETSIM_PACKAGE_HPP
 #define NETSIM_PACKAGE_HPP
 
-
+#include <set>
 #include "types.hpp"
 
-class Package {
+
+class Package { //poprawic nadawanie IDs'ow
 private:
     ElementID ID_;
-    // static set<ElementID> assigned_IDs;
+    static std::set<ElementID> assigned_IDs;
+    static std::set<ElementID> freed_IDs;
 
 public:
     Package() = default;

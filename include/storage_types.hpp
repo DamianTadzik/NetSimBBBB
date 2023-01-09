@@ -8,6 +8,7 @@
 #define NETSIM_STORAGE_TYPES_HPP
 
 #include <list>
+
 #include "types.hpp"
 #include "package.hpp"
 
@@ -18,7 +19,7 @@ enum class PackageQueueType {
 
 
 class IPackageStockpile {
-private:
+protected: // nie wiem jak to rozumiec do konca
     std::list<Package> packages_;
 
 public:
@@ -47,6 +48,25 @@ public:
     virtual PackageQueueType get_queue_type() const = 0;
 
     ~IPackageQueue() = default;
+};
+
+
+class PackageQueue : public IPackageQueue {
+private:
+    PackageQueueType pqt_;
+
+public:
+    PackageQueue(PackageQueueType pqt) : pqt_(pqt) {}
+
+    PackageQueueType get_queue_type() const override;
+
+    Package pop() override;
+
+    size_type size() const override;
+
+    bool empty() const override;
+
+    void push(Package &&package) override;
 };
 
 #endif //NETSIM_STORAGE_TYPES_HPP
