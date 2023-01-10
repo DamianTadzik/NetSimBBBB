@@ -27,8 +27,7 @@ Hakuna matata
    * [Warstwa prezentacji danych (raporty)](https://home.agh.edu.pl/~mdig/dokuwiki/doku.php?id=teaching:programming:soft-dev:topics:net-simulation:part_reports) \[R]
    * [Symulacja](https://home.agh.edu.pl/~mdig/dokuwiki/doku.php?id=teaching:programming:soft-dev:topics:net-simulation:part_simulation) \[S]
    
-<<<<<<< HEAD
-> ua ale jazda poniżej są diagramy xd
+## Diagramy:
 ####Półpordukty i ich przechowywanie \[P]
 <img src="/diagrams/P_diagram.png">
 
@@ -38,9 +37,3 @@ Hakuna matata
 ####Fabryka \[F]
 
 ####Warstwa odczytu i zapisu danych \[IO]
-
-=======
-## Diagramy:
-
-<img src="/diagrams/P_diagram.png">
->>>>>>> ac7647e91e1d16f5298c943beb5a73d52fa714d9
