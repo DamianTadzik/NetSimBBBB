@@ -7,4 +7,67 @@
 #ifndef NETSIM_STORAGE_TYPES_HPP
 #define NETSIM_STORAGE_TYPES_HPP
 
+#include <list>
+
+#include "types.hpp"
+#include "package.hpp"
+
+enum class PackageQueueType {
+    FIFO,
+    LIFO
+};
+
+
+class IPackageStockpile {
+protected: // nie wiem jak to rozumiec do konca
+
+
+public:
+    using const_iterator = std::list<Package>::const_iterator;
+    using iterator = std::list<Package>::iterator;
+
+    virtual void push(Package &&package) = 0;
+
+    virtual bool empty() const = 0;
+
+    virtual size_type size() const = 0;
+
+    iterator begin() { return packages_.begin(); }
+    iterator end() { return packages_.end(); }
+    const_iterator begin() const { return packages_.cbegin(); }
+    const_iterator end() const { return packages_.cend(); }
+
+    virtual ~IPackageStockpile() = default;
+};
+
+
+class IPackageQueue : public IPackageStockpile{
+public:
+    virtual Package pop() = 0;
+
+    virtual PackageQueueType get_queue_type() const = 0;
+
+    ~IPackageQueue() override = default;
+};
+
+
+class PackageQueue : public IPackageQueue {
+private:
+    std::list<Package> packages_;
+    PackageQueueType pqt_;
+
+public:
+    PackageQueue(PackageQueueType pqt) : pqt_(pqt) {}
+
+    PackageQueueType get_queue_type() const override;
+
+    Package pop() override;
+
+    size_type size() const override;
+
+    bool empty() const override;
+
+    void push(Package &&package) override;
+};
+
 #endif //NETSIM_STORAGE_TYPES_HPP

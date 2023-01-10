@@ -1,0 +1,8 @@
+1/9/2023
+Ogarnalem klase PackageQueue, nie wiem czy metoda pop dziala, czy tez powinna byc zrobiona za pomoca switch'a,
+W klasie IPackageStorepile zmienilem "private" na "protected", bo potrzebowalem miec dostep do kontenera.
+Klasa Package nadal potrzebuje tych zmian zeby mogla sama nadawac ID'sy
+
+1/6/2023
+Klasy IPackageStorepile, IPackageQueue, PackageQueueType powinny byc dobrze ogarniete, choc moga sie pojawic drobne niedociagniecia
+Klasa Package wymaga kilku poprawek, nie wiem czy to ona powinna przydzielac id czy jak to ma tam do konca dzialac.
