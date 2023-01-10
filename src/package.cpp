@@ -6,25 +6,37 @@
 
 Package &Package::operator=(Package &&other) {
     ID_ = other.ID_;
+    other.ID_ = BLANK_ID;
     return *this;
 }
 
-ElementID Package::get_ID() const {
+ElementID Package::get_id() const {
     return ID_;
 }
 
 Package::~Package() {
-    freed_IDs.emplace(ID_);
+    assigned_IDs.erase(ID_);
+    freed_IDs.insert(ID_);
 }
 
 Package::Package() {
+    BLANK_ID = -1;
     if (!freed_IDs.empty()) {
-        ID_ = *freed_IDs.lower_bound(0);
+        ID_ = *freed_IDs.begin();
         freed_IDs.erase(ID_);
     }
     else {
-        int n = int(assigned_IDs.size());
-        ID_ = *assigned_IDs.lower_bound(n) + 1;
-        assigned_IDs.emplace(ID_);
+        ID_ = *assigned_IDs.end() + 1;
+        assigned_IDs.insert(ID_);
     }
+}
+
+Package::Package(ElementID id) {
+    assigned_IDs.insert(id);
+    ID_ = id;
+}
+
+Package::Package(Package &&package) {
+    ID_ = package.ID_;
+    package.ID_ = BLANK_ID;
 }

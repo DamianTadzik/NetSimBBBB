@@ -10,22 +10,25 @@
 #include "types.hpp"
 
 
-class Package { //poprawic nadawanie IDs'ow
+class Package {
 private:
     ElementID ID_;
     static std::set<ElementID> assigned_IDs;
     static std::set<ElementID> freed_IDs;
+    static ElementID BLANK_ID;
 
 public:
     Package();
 
-    Package(ElementID id) : ID_(id) {};
+    Package(ElementID id);
 
-    Package(Package &&package) : ID_(package.ID_) {};
+    Package(Package &&package);
+    Package(Package &package) = delete;
 
     Package &operator=(Package &&other);
+    Package &operator=(Package &other) = delete;
 
-    ElementID get_ID() const;
+    ElementID get_id() const;
 
     ~Package();
 };
