@@ -3,3 +3,7 @@
 //
 
 #include "../include/factory.hpp"
+
+void Factory::remove_ramp(ElementID id) {
+
+}
