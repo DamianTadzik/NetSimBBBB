@@ -20,7 +20,7 @@ enum class PackageQueueType {
 
 class IPackageStockpile {
 protected: // nie wiem jak to rozumiec do konca
-    std::list<Package> packages_;
+
 
 public:
     using const_iterator = std::list<Package>::const_iterator;
@@ -37,7 +37,7 @@ public:
     const_iterator begin() const { return packages_.cbegin(); }
     const_iterator end() const { return packages_.cend(); }
 
-    ~IPackageStockpile() = default;
+    virtual ~IPackageStockpile() = default;
 };
 
 
@@ -47,12 +47,13 @@ public:
 
     virtual PackageQueueType get_queue_type() const = 0;
 
-    ~IPackageQueue() = default;
+    ~IPackageQueue() override = default;
 };
 
 
 class PackageQueue : public IPackageQueue {
 private:
+    std::list<Package> packages_;
     PackageQueueType pqt_;
 
 public:

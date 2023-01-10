@@ -17,7 +17,7 @@ private:
     static std::set<ElementID> freed_IDs;
 
 public:
-    Package() = default;
+    Package();
 
     Package(ElementID id) : ID_(id) {};
 
@@ -27,7 +27,7 @@ public:
 
     ElementID get_ID() const;
 
-    ~Package() = default;
+    ~Package();
 };
 
 #endif //NETSIM_PACKAGE_HPP
