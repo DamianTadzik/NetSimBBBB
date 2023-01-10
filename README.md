@@ -28,12 +28,16 @@ Hakuna matata
    * [Symulacja](https://home.agh.edu.pl/~mdig/dokuwiki/doku.php?id=teaching:programming:soft-dev:topics:net-simulation:part_simulation) \[S]
    
 ## Diagramy:
-####Półpordukty i ich przechowywanie \[P]
+#### Półpordukty i ich przechowywanie \[P]
 <img src="/diagrams/P_diagram.png">
 
-####Węzły sieci \[N]
+#### Węzły sieci \[N]
 <img src="/diagrams/N_diagram.png">
 
-####Fabryka \[F]
+#### Fabryka \[F]
 
-####Warstwa odczytu i zapisu danych \[IO]
+#### Warstwa odczytu i zapisu danych \[IO]
+
+#### Warstwa prezentacji danych (raporty) \[R]
+
+#### Symulacja \ [S]
