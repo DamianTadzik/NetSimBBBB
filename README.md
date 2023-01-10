@@ -35,6 +35,7 @@ Hakuna matata
 <img src="/diagrams/N_diagram.png">
 
 #### Fabryka \[F]
+<img src="/diagrams/F_diagram.png">
 
 #### Warstwa odczytu i zapisu danych \[IO]
 
