@@ -9,7 +9,7 @@ Brzany morda wąsem styrana
 Oj dana dana
 Hakuna matata
 
-####Fragmenty systemu (lista zadań):
+## Fragmenty systemu (lista zadań):
    * Warstwa logiki biznesowej
       * [Półprodukty i ich przechowywanie](https://home.agh.edu.pl/~mdig/dokuwiki/doku.php?id=teaching:programming:soft-dev:topics:net-simulation:part_storage) \[P]
         1. [ ] Faza koncepcyjna
@@ -27,6 +27,7 @@ Hakuna matata
    * [Warstwa prezentacji danych (raporty)](https://home.agh.edu.pl/~mdig/dokuwiki/doku.php?id=teaching:programming:soft-dev:topics:net-simulation:part_reports) \[R]
    * [Symulacja](https://home.agh.edu.pl/~mdig/dokuwiki/doku.php?id=teaching:programming:soft-dev:topics:net-simulation:part_simulation) \[S]
    
+<<<<<<< HEAD
 > ua ale jazda poniżej są diagramy xd
 ####Półpordukty i ich przechowywanie \[P]
 <img src="/diagrams/P_diagram.png">
@@ -38,3 +39,8 @@ Hakuna matata
 
 ####Warstwa odczytu i zapisu danych \[IO]
 
+=======
+## Diagramy:
+
+<img src="/diagrams/P_diagram.png">
+>>>>>>> ac7647e91e1d16f5298c943beb5a73d52fa714d9
