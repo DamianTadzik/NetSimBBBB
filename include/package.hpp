@@ -20,13 +20,13 @@ private:
 public:
     Package();
 
-    Package(ElementID id);
+    explicit Package(ElementID id);
 
-    Package(Package &&package);
-    Package(Package &package) = delete;
+    Package(Package &&package) noexcept ;
+    //Package(Package &package) = delete;
 
-    Package &operator=(Package &&other);
-    Package &operator=(Package &other) = delete;
+    Package &operator=(Package &&other) noexcept ;
+    //Package &operator=(Package &other) = delete;
 
     ElementID get_id() const;
 
