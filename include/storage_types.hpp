@@ -19,12 +19,8 @@ enum class PackageQueueType {
 
 
 class IPackageStockpile {
-protected: // nie wiem jak to rozumiec do konca
-
-
 public:
     using const_iterator = std::list<Package>::const_iterator;
-    using iterator = std::list<Package>::iterator;
 
     virtual void push(Package &&package) = 0;
 
@@ -32,10 +28,10 @@ public:
 
     virtual size_type size() const = 0;
 
-    iterator begin() { return packages_.begin(); }
-    iterator end() { return packages_.end(); }
-    const_iterator begin() const { return packages_.cbegin(); }
-    const_iterator end() const { return packages_.cend(); }
+    virtual const_iterator begin() = 0;
+    virtual const_iterator end() = 0;
+    virtual const_iterator begin() const = 0;
+    virtual const_iterator end() const = 0;
 
     virtual ~IPackageStockpile() = default;
 };
@@ -68,6 +64,11 @@ public:
     bool empty() const override;
 
     void push(Package &&package) override;
+
+    const_iterator begin() override;
+    const_iterator end() override;
+    const_iterator begin() const override;
+    const_iterator end() const override;
 };
 
 #endif //NETSIM_STORAGE_TYPES_HPP
