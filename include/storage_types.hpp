@@ -50,10 +50,10 @@ public:
 class PackageQueue : public IPackageQueue {
 private:
     std::list<Package> packages_;
-    PackageQueueType pqt_;
+    PackageQueueType packageQueueType_;
 
 public:
-    PackageQueue(PackageQueueType pqt) : pqt_(pqt) {}
+    PackageQueue(PackageQueueType packageQueueType) : packageQueueType_(packageQueueType) {}
 
     PackageQueueType get_queue_type() const override;
 

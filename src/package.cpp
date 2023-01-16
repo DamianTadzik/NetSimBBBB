@@ -37,7 +37,7 @@ Package::Package(ElementID id) {
     ID_ = id;
 }
 
-Package &Package::operator=(Package &&other)  noexcept {
+Package& Package::operator=(Package &&other)  noexcept {
     ID_ = other.ID_;
     other.ID_ = BLANK_ID;
     return *this;

@@ -5,12 +5,12 @@
 #include "../include/storage_types.hpp"
 
 PackageQueueType PackageQueue::get_queue_type() const {
-    return pqt_;
+    return packageQueueType_;
 }
 
 Package PackageQueue::pop() { // nie ma gwarancji ze ta metoda zadziala
     Package temp(-1);
-    switch (pqt_) {
+    switch (packageQueueType_) {
         case PackageQueueType::FIFO:
             temp = std::move(packages_.front());
             packages_.pop_front();

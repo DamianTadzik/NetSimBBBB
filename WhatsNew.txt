@@ -1,3 +1,6 @@
+1/16/2023
+Klasy IPackageReceiver, Storehouse powinny dzialac, w kazdym razie buduje poprawnie
+
 1/13/2023
 Naprawiono klase Package, nie powinna teraz generowac bledow.
 Dziwne zachowanie testu "IsAssignmentOperatorCorrect" z testowania klasy Package
