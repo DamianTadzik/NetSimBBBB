@@ -32,6 +32,8 @@ TEST(PackageTest, IsMoveConstructorCorrect) {
     EXPECT_EQ(p2.get_id(), 1);
 }
 
+// gdy odpala sie zeby wykonac wszystkie testy z pliku to ten test nie przechodzi,
+// gdy jednak odpala sie tylko ten test to nie generuje zadnych bledow i przechodzi poprwanie
 TEST(PackageTest, IsAssignmentOperatorCorrect) {
     Package p1;
     Package p2 = std::move(p1);
