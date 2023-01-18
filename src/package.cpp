@@ -14,8 +14,10 @@ ElementID Package::get_id() const {
 }
 
 Package::~Package() {
-    assigned_IDs.erase(ID_);
-    freed_IDs.insert(ID_);
+    if (ID_ != BLANK_ID) {
+        assigned_IDs.erase(ID_);
+        freed_IDs.insert(ID_);
+    }
 }
 
 Package::Package() {

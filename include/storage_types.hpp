@@ -28,8 +28,8 @@ public:
 
     virtual size_type size() const = 0;
 
-    virtual const_iterator begin() = 0;
-    virtual const_iterator end() = 0;
+    virtual const_iterator cbegin() const = 0;
+    virtual const_iterator cend() const = 0;
     virtual const_iterator begin() const = 0;
     virtual const_iterator end() const = 0;
 
@@ -65,8 +65,8 @@ public:
 
     void push(Package &&package) override;
 
-    const_iterator begin() override;
-    const_iterator end() override;
+    const_iterator cbegin() const override;
+    const_iterator cend() const override;
     const_iterator begin() const override;
     const_iterator end() const override;
 };

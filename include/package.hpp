@@ -23,10 +23,10 @@ public:
     explicit Package(ElementID id);
 
     Package(Package &&package) noexcept ;
-    //Package(Package &package) = delete;
+    Package(Package &package) = delete;
 
     Package &operator=(Package &&other) noexcept ;
-    //Package &operator=(Package &other) = delete;
+    Package &operator=(Package &other) = delete;
 
     ElementID get_id() const;
 

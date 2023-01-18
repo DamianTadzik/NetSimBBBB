@@ -40,12 +40,12 @@ void PackageQueue::push(Package &&package) {
     packages_.emplace_back(package.get_id());
 }
 
-IPackageStockpile::const_iterator PackageQueue::begin() {
-    return packages_.begin();
+IPackageStockpile::const_iterator PackageQueue::cbegin() const{
+    return packages_.cbegin();
 }
 
-IPackageStockpile::const_iterator PackageQueue::end() {
-    return packages_.end();
+IPackageStockpile::const_iterator PackageQueue::cend() const{
+    return packages_.cend();
 }
 
 IPackageStockpile::const_iterator PackageQueue::begin() const {

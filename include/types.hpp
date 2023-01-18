@@ -9,4 +9,7 @@
 using ElementID = int;
 using size_type = int;
 
+using Time = int;
+using TimeOffset = int;
+
 #endif //NETSIM_TYPES_HPP
