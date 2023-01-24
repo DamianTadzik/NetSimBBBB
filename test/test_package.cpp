@@ -41,15 +41,3 @@ TEST(PackageTest, IsAssignmentOperatorCorrect) {
     EXPECT_EQ(p2.get_id(), 1);
 }
 
-
-TEST(PackageTest, ThrowAnException) {
-    try {
-        Package p1(1);
-        Package p2(2);
-        Package p3(2);
-        FAIL();
-    }
-    catch (std::logic_error& already_assigned) {
-        SUCCEED();
-    }
-}

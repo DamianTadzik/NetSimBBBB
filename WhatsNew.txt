@@ -1,7 +1,5 @@
 1/24/2023
 Nodes.hpp oraz Nodes.cpp poprawnie dzialaja, przechodzi testy
-Dodano zabezpieczenie do konstruktora klasy Package(ElementID id), teraz rzuca wyjatek std::logic_error "already_assigned" gdy dane id jest juz przypisane
-Dodano test do test_package.cpp ktory sprawdza czy konstruktor rzuca wyjatek
 
 1/16/2023
 Klasy IPackageReceiver, Storehouse powinny dzialac, w kazdym razie buduje poprawnie

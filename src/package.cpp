@@ -31,11 +31,6 @@ Package::Package() {
 }
 
 Package::Package(ElementID id) {
-    if (assigned_IDs.count(id) == 1) {
-        std::logic_error already_assigned("ID already assigned\r\n");
-        throw (already_assigned);
-    }
-
     if (freed_IDs.find(id) != freed_IDs.end()) {
         freed_IDs.erase(id);
     }
