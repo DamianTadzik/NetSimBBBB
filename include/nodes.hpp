@@ -17,39 +17,57 @@
 #include <map>
 
 
+enum class ReceiverType {
+    RAMP,
+    WORKER,
+    STOREHOUSE
+};
+
+
 class IPackageReceiver {
 public:
-    using const_iterator_ips = IPackageStockpile::const_iterator;
+    using const_iterator = IPackageStockpile::const_iterator;
 
-    virtual const_iterator_ips begin() const= 0;
-    virtual const_iterator_ips end() const= 0;
-    virtual const_iterator_ips cbegin() const = 0;
-    virtual const_iterator_ips cend() const = 0;
+    virtual const_iterator begin() const = 0;
+
+    virtual const_iterator end() const = 0;
+
+    virtual const_iterator cbegin() const = 0;
+
+    virtual const_iterator cend() const = 0;
 
     virtual void receive_package(Package &&p) = 0;
+
     virtual ElementID get_id() const = 0;
+
     virtual ~IPackageReceiver() = default;
 };
 
 
-class ReceiverPreferences{
+class ReceiverPreferences {
 public:
-    using preferences_t = std::map<IPackageReceiver*, double>;
+    using preferences_t = std::map<IPackageReceiver *, double>;
     using const_iterator = preferences_t::const_iterator;
 
-    ReceiverPreferences(ProbabilityGenerator pg = probability_generator) : pg_(std::move(pg)){};
+    ReceiverPreferences(ProbabilityGenerator pg = probability_generator) : pg_(std::move(pg)) {};
 
-    void add_receiver (IPackageReceiver* r);
-    void remove_receiver (IPackageReceiver* r);
-    IPackageReceiver* choose_receiver();
+    void add_receiver(IPackageReceiver *r);
 
-    preferences_t& get_preferences() const {return const_cast<preferences_t&>(preferences_);};
-    bool empty () const {return preferences_.empty();};
+    void remove_receiver(IPackageReceiver *r);
 
-    const_iterator cbegin() const {return preferences_.cbegin();};
-    const_iterator begin() const {return preferences_.begin();};
-    const_iterator cend() const { return preferences_.cend();};
-    const_iterator end() const { return preferences_.end();};
+    IPackageReceiver *choose_receiver();
+
+    preferences_t &get_preferences() const { return const_cast<preferences_t &>(preferences_); };
+
+    bool empty() const { return preferences_.empty(); };
+
+    const_iterator cbegin() const { return preferences_.cbegin(); };
+
+    const_iterator begin() const { return preferences_.begin(); };
+
+    const_iterator cend() const { return preferences_.cend(); };
+
+    const_iterator end() const { return preferences_.end(); };
 
 private:
     ProbabilityGenerator pg_;
@@ -58,50 +76,75 @@ private:
 };
 
 
-class PackageSender: public ReceiverPreferences{
+class PackageSender {
 public:
     ReceiverPreferences receiver_preferences_;
 
-    PackageSender(PackageSender&& p) = default;
+    PackageSender() = default;
+
+    PackageSender(PackageSender &&p) = default;
 
     void send_package();
 
-    std::optional<Package>& get_sending_buffer(){
+    std::optional<Package> &get_sending_buffer() {
         return buffer_;
     };
 
 protected:
-    void push_package(Package&& package){
-        if (!buffer_){
+    void push_package(Package &&package) {
+        if (!buffer_) {
             buffer_.emplace(std::move(package));
         };
     };
 
-    std::optional<Package> buffer_ = std::nullopt ;
+    std::optional<Package> buffer_ = std::nullopt;
+};
+
+
+class Ramp : public PackageSender {
+public:
+    Ramp(ElementID id, TimeOffset di);
+
+    void deliver_goods(Time t);
+
+    TimeOffset get_delivery_interval() const { return di_; };
+
+    ElementID get_id() const { return id_; };
+private:
+    ReceiverType receiver_type_ = ReceiverType::RAMP;
+    ElementID id_;
+    TimeOffset di_;
+
+    unsigned long long start_time_ = UINTMAX_MAX;
 };
 
 
 class Storehouse : public IPackageReceiver {
 private:
+    ReceiverType receiver_type_ = ReceiverType::STOREHOUSE;
     ElementID id_;
     std::unique_ptr<IPackageStockpile> iPackageStockpile_ptr_;
 
 public:
-    Storehouse(ElementID id, std::unique_ptr<IPackageStockpile> ips_ptr);
+    Storehouse(ElementID id, std::unique_ptr<IPackageStockpile> ips_ptr = std::make_unique<PackageQueue>(PackageQueueType::FIFO));
 
-    ElementID get_id() const override { return id_;}
+    ElementID get_id() const override { return id_; }
 
     void receive_package(Package &&p) override;
 
-    const_iterator_ips cbegin() const override { return iPackageStockpile_ptr_->cbegin(); }
-    const_iterator_ips cend() const override { return iPackageStockpile_ptr_->cend(); }
-    const_iterator_ips begin() const override { return iPackageStockpile_ptr_->begin(); }
-    const_iterator_ips end() const override {return iPackageStockpile_ptr_->end(); }
+    const_iterator cbegin() const override { return iPackageStockpile_ptr_->cbegin(); }
+
+    const_iterator cend() const override { return iPackageStockpile_ptr_->cend(); }
+
+    const_iterator begin() const override { return iPackageStockpile_ptr_->begin(); }
+
+    const_iterator end() const override { return iPackageStockpile_ptr_->end(); }
 };
 
 
-class Worker : public IPackageReceiver, public PackageSender{
+class Worker : public IPackageReceiver, public PackageSender {
 private:
+    ReceiverType receiver_type_ = ReceiverType::WORKER;
     ElementID id_;
     TimeOffset processing_duration_;
     std::unique_ptr<IPackageQueue> queue_ptr_;
@@ -113,18 +156,18 @@ public:
 
     void do_work(Time time);
 
-    TimeOffset get_processing_duration() const{ return processing_duration_; }
+    TimeOffset get_processing_duration() const { return processing_duration_; }
 
     Time get_package_processing_start_time() const { return id_; }
 
-    //todo Zapytac o te iteratory
-    const_iterator_ips cbegin() const override { return queue_ptr_->cbegin(); }
 
-    const_iterator_ips cend() const override { return queue_ptr_->cend(); }
+    const_iterator cbegin() const override { return queue_ptr_->cbegin(); }
 
-    const_iterator_ips begin() const override { return queue_ptr_->cbegin(); }
+    const_iterator cend() const override { return queue_ptr_->cend(); }
 
-    const_iterator_ips end() const override { return queue_ptr_->cend(); }
+    const_iterator begin() const override { return queue_ptr_->cbegin(); }
+
+    const_iterator end() const override { return queue_ptr_->cend(); }
 
     ElementID get_id() const override { return id_; }
 

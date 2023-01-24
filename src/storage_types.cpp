@@ -8,7 +8,7 @@ PackageQueueType PackageQueue::get_queue_type() const {
     return packageQueueType_;
 }
 
-Package PackageQueue::pop() { // nie ma gwarancji ze ta metoda zadziala
+Package PackageQueue::pop() {
     Package temp(-1);
     switch (packageQueueType_) {
         case PackageQueueType::FIFO:
@@ -20,7 +20,7 @@ Package PackageQueue::pop() { // nie ma gwarancji ze ta metoda zadziala
             packages_.pop_back();
             break;
         default:
-            throw;
+            throw std::logic_error("Unrecognized queue type");
     }
     return temp;
 }
@@ -40,11 +40,11 @@ void PackageQueue::push(Package &&package) {
     packages_.emplace_back(package.get_id());
 }
 
-IPackageStockpile::const_iterator PackageQueue::cbegin() const{
+IPackageStockpile::const_iterator PackageQueue::cbegin() const {
     return packages_.cbegin();
 }
 
-IPackageStockpile::const_iterator PackageQueue::cend() const{
+IPackageStockpile::const_iterator PackageQueue::cend() const {
     return packages_.cend();
 }
 

@@ -38,7 +38,7 @@ set(SOURCES_FILES_TESTS
 #        test/main_gtest.cpp
 #        test/test_Factory.cpp
 #        test/test_factory_io.cpp
-#        test/test_nodes.cpp
+        test/test_nodes.cpp
         test/test_package.cpp
 #        test/test_reports.cpp
 #        test/test_simulate.cpp
@@ -64,4 +64,4 @@ target_link_libraries(NetSim_test gmock)
 
 # Ta linijka jest do ewentualnych zmian
 # EXCERCISE_ID znajdziesz w config.hpp TODO testy różne
-target_compile_definitions(NetSim_test PUBLIC EXERCISE_ID=EXERCISE_ID_PACKAGES)
+target_compile_definitions(NetSim_test PUBLIC EXERCISE_ID=EXERCISE_ID_NODES)

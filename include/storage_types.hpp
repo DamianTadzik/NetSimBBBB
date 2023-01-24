@@ -29,15 +29,18 @@ public:
     virtual size_type size() const = 0;
 
     virtual const_iterator cbegin() const = 0;
+
     virtual const_iterator cend() const = 0;
+
     virtual const_iterator begin() const = 0;
+
     virtual const_iterator end() const = 0;
 
     virtual ~IPackageStockpile() = default;
 };
 
 
-class IPackageQueue : public IPackageStockpile{
+class IPackageQueue : public IPackageStockpile {
 public:
     virtual Package pop() = 0;
 
@@ -66,8 +69,11 @@ public:
     void push(Package &&package) override;
 
     const_iterator cbegin() const override;
+
     const_iterator cend() const override;
+
     const_iterator begin() const override;
+
     const_iterator end() const override;
 };
 
