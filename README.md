@@ -43,4 +43,4 @@ Hakuna matata
 
 #### Symulacja \ [S]
 
-<img src = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.polsatsport.pl%2Fwiadomosc%2F2023-01-16%2Feric-cantona-ronaldo-wciaz-nie-zdaje-sobie-sprawy-ze-nie-ma-juz-25-lat%2F&psig=AOvVaw221byRtySy7NHetr3MAPDi&ust=1674660809768000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCKi4sOnD4PwCFQAAAAAdAAAAABAD"> 
+<img src = "https://ipla.pluscdn.pl/dituel/cp/zk/zk8ythg3k8o3rax8h3w97aacvjhpok1k.jpg"> 
