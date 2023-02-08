@@ -24,22 +24,22 @@ Package::Package() {
     if (!freed_IDs.empty()) {
         ID_ = *freed_IDs.begin();
         freed_IDs.erase(ID_);
-    }
-    else {
+    } else {
         ID_ = *assigned_IDs.end();
         assigned_IDs.insert(ID_);
     }
 }
 
 Package::Package(ElementID id) {
-    assigned_IDs.insert(id);
     if (freed_IDs.find(id) != freed_IDs.end()) {
         freed_IDs.erase(id);
     }
+
+    assigned_IDs.insert(id);
     ID_ = id;
 }
 
-Package& Package::operator=(Package &&other)  noexcept {
+Package &Package::operator=(Package &&other) noexcept {
     ID_ = other.ID_;
     other.ID_ = BLANK_ID;
     return *this;

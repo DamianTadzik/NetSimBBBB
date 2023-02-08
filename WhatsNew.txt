@@ -1,3 +1,16 @@
+2/8/2023
+Symulacja dziala, troche zle bo idiki sa takie same a nie powinny byc, oraz czasami worker ma dziwna dlugosc przetwarzania produktu
+np jak usatwi sie 50 tur to czas przetwarzania zmienia sie na 50, lekka kraksa.
+Report.hpp i .cpp oraz Simulation.hpp i .cpp buduja sie, przechodzi testy elegancko bez bledow,
+Male poprawki w factory.hpp i .cpp glownie poprawianie const correctness bo byly zle zaimplementowane.
+Ten jeden test z factory_test.cpp nadal nie przechodzi, nie wiem dlaczego tak jest, mozliwe ze jest problem z metoda
+remove_receiver bo w tym tescie po usunieciu workera jedna z preferencji rampy zmienia sie na IPackageReceiver i przez to wywala
+blad, dziwne zachowanie nie wiem dlaczego tak sie dzieje.
+Mozliwe ze do poprawki jest metoda remove_receiver(NodeCollection<Worker>), komentarz "wyjasnia" potencjalny problem.
+
+1/24/2023
+Nodes.hpp oraz Nodes.cpp poprawnie dzialaja, przechodzi testy
+
 1/16/2023
 Klasy IPackageReceiver, Storehouse powinny dzialac, w kazdym razie buduje poprawnie
 
@@ -6,10 +19,9 @@ Naprawiono klase Package, nie powinna teraz generowac bledow.
 Dziwne zachowanie testu "IsAssignmentOperatorCorrect" z testowania klasy Package
 
 1/9/2023
-Ogarnalem klase PackageQueue, nie wiem czy metoda pop dziala, czy tez powinna byc zrobiona za pomoca switch'a,
-W klasie IPackageStorepile zmienilem "private" na "protected", bo potrzebowalem miec dostep do kontenera.
-Klasa Package nadal potrzebuje tych zmian zeby mogla sama nadawac ID'sy
+Ogarnalem klase PackageQueue, nie wiem czy metoda pop dziala
+W klasie IPackageStorepile zmienilem "private" na "protected".
 
 1/6/2023
 Klasy IPackageStorepile, IPackageQueue, PackageQueueType powinny byc dobrze ogarniete, choc moga sie pojawic drobne niedociagniecia
-Klasa Package wymaga kilku poprawek, nie wiem czy to ona powinna przydzielac id czy jak to ma tam do konca dzialac.
+Klasa Package wymaga kilku poprawek

@@ -40,3 +40,4 @@ TEST(PackageTest, IsAssignmentOperatorCorrect) {
 
     EXPECT_EQ(p2.get_id(), 1);
 }
+

@@ -7,6 +7,7 @@
 #define NETSIM_PACKAGE_HPP
 
 #include <set>
+#include <stdexcept>
 #include "types.hpp"
 
 
@@ -22,10 +23,12 @@ public:
 
     explicit Package(ElementID id);
 
-    Package(Package &&package) noexcept ;
+    Package(Package &&package) noexcept;
+
     Package(Package &package) = delete;
 
-    Package &operator=(Package &&other) noexcept ;
+    Package &operator=(Package &&other) noexcept;
+
     Package &operator=(Package &other) = delete;
 
     ElementID get_id() const;
