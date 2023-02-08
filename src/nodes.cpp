@@ -37,12 +37,21 @@ IPackageReceiver *ReceiverPreferences::choose_receiver() {
 
 
 void ReceiverPreferences::remove_receiver(IPackageReceiver *r) {
-    preferences_.erase(r);
+    auto temp = preferences_.find(r);
+    preferences_.erase(temp);
+//    preferences_.erase(r);
     if (preferences_.size() != 0) {
         for (auto i = preferences_.begin(); i != preferences_.end(); i++) {
             i->second = 1 / (double) (preferences_.size());
         }
     }
+}
+
+
+PackageSender& PackageSender::operator=(PackageSender &&packageSender)  noexcept {
+    buffer_ = std::move(packageSender.buffer_);
+    receiver_preferences_ = std::move(packageSender.receiver_preferences_);
+    return *this;
 }
 
 

@@ -5,12 +5,12 @@
 // Created by brzan on 03.01.2023.
 //
 
+#ifndef NETSIM_NODES_HPP
+#define NETSIM_NODES_HPP
+
 #include "package.hpp"
 #include "storage_types.hpp"
 #include "helpers.hpp"
-
-#ifndef NETSIM_NODES_HPP
-#define NETSIM_NODES_HPP
 
 #include <memory>
 #include <optional>
@@ -18,7 +18,6 @@
 
 
 enum class ReceiverType {
-    RAMP,
     WORKER,
     STOREHOUSE
 };
@@ -39,6 +38,8 @@ public:
     virtual void receive_package(Package &&p) = 0;
 
     virtual ElementID get_id() const = 0;
+
+    virtual ReceiverType get_receiver_type() const = 0;
 
     virtual ~IPackageReceiver() = default;
 };
@@ -84,9 +85,11 @@ public:
 
     PackageSender(PackageSender &&p) = default;
 
+    PackageSender &operator=(PackageSender&& packageSender) noexcept;
+
     void send_package();
 
-    std::optional<Package> &get_sending_buffer() {
+    const std::optional<Package> &get_sending_buffer() const {
         return buffer_;
     };
 
@@ -111,7 +114,6 @@ public:
 
     ElementID get_id() const { return id_; };
 private:
-    ReceiverType receiver_type_ = ReceiverType::RAMP;
     ElementID id_;
     TimeOffset di_;
 
@@ -139,6 +141,8 @@ public:
     const_iterator begin() const override { return iPackageStockpile_ptr_->begin(); }
 
     const_iterator end() const override { return iPackageStockpile_ptr_->end(); }
+
+    ReceiverType get_receiver_type() const override { return receiver_type_; }
 };
 
 
@@ -171,7 +175,13 @@ public:
 
     ElementID get_id() const override { return id_; }
 
+    ReceiverType get_receiver_type() const override { return receiver_type_; }
+
+    IPackageQueue* get_queue() const { return queue_ptr_.get(); }
+
     void receive_package(Package &&p) override;
+
+    const std::optional<Package>& get_processing_buffer() const { return currently_processed_package_; }
 };
 
 

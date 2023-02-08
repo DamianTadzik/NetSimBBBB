@@ -11,6 +11,8 @@
 #include <functional>
 #include <random>
 #include <cstdlib>
+#include <vector>
+#include <string>
 
 
 using ProbabilityGenerator = std::function<double()>;
@@ -21,5 +23,9 @@ extern std::mt19937 rng;
 extern double default_probability_generator();
 
 extern ProbabilityGenerator probability_generator;
+
+extern std::vector<std::string> splitString(std::string line, char c);
+
+extern std::string removeWhitespaces(std::string data);
 
 #endif //NETSIM_HELPERS_HPP
